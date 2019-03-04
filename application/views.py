@@ -1,4 +1,8 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
@@ -6,9 +10,30 @@ from application.hotel_serializer import HotelSerializer
 from application.models import Hotel
 
 
-@api_view(['GET'])
-def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
+# @api_view(['POST'])
+def registration(request):
+    data = JSONParser().parse(request)
+    user = User.objects.create_user(data['username'], data['email'], data['password'])
+    user.last_name = data['lastname']
+    user.first_name = data['firstname']
+    print(user)
+    user.save()
+    return JsonResponse(status=201)
+
+
+# @api_view(['POST'])
+def auth(request):
+    data = JSONParser().parse(request)
+    username = data['username']
+    password = data['password']
+    user = authenticate(request, username=username, password=password)
+    # print(user)
+    if user is not None:
+        login(request, user)
+        print(user)
+        return JsonResponse(None, status=200, safe=False)
+    else:
+        return JsonResponse(None, status=401, safe=False)
 
 
 @api_view(['POST'])
@@ -21,7 +46,9 @@ def create_hotel(request):
     return JsonResponse(hotel_serializer.errors, status=400)
 
 
+@login_required
 def get_hotels(request):
+    print(request.user)
     hotels = Hotel.objects.all()
     hotel_serializer = HotelSerializer(hotels, many=True)
     return JsonResponse(hotel_serializer.data, safe=False)
