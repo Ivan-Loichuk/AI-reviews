@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
@@ -10,33 +10,34 @@ from application.hotel_serializer import HotelSerializer
 from application.models import Hotel
 
 
-# @api_view(['POST'])
 def registration(request):
     data = JSONParser().parse(request)
     user = User.objects.create_user(data['username'], data['email'], data['password'])
     user.last_name = data['lastname']
     user.first_name = data['firstname']
-    print(user)
     user.save()
-    return JsonResponse(status=201)
+    return JsonResponse('', status=201, safe=False)
 
 
-# @api_view(['POST'])
 def auth(request):
     data = JSONParser().parse(request)
     username = data['username']
     password = data['password']
     user = authenticate(request, username=username, password=password)
-    # print(user)
     if user is not None:
         login(request, user)
-        print(user)
-        return JsonResponse(None, status=200, safe=False)
+        return JsonResponse(None, status=401, safe=False)
     else:
         return JsonResponse(None, status=401, safe=False)
 
 
-@api_view(['POST'])
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponse('')
+
+
+@login_required
 def create_hotel(request):
     data = JSONParser().parse(request)
     hotel_serializer = HotelSerializer(data=data)
