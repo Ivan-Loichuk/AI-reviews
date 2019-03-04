@@ -16,7 +16,7 @@ def registration(request):
     user.last_name = data['lastname']
     user.first_name = data['firstname']
     user.save()
-    return HttpResponse(201)
+    return HttpResponse('')
 
 
 def auth(request):
@@ -26,7 +26,7 @@ def auth(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return JsonResponse(None, status=401, safe=False)
+        return JsonResponse(None, status=200, safe=False)
     else:
         return JsonResponse(None, status=401, safe=False)
 
