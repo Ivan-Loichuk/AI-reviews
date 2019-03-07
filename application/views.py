@@ -2,8 +2,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
 from application.hotel_serializer import HotelSerializer
@@ -15,8 +13,11 @@ def registration(request):
     user = User.objects.create_user(data['username'], data['email'], data['password'])
     user.last_name = data['lastname']
     user.first_name = data['firstname']
-    user.save()
-    return HttpResponse('')
+    try:
+        user.save()
+    except:
+        return HttpResponse('Failed to create user: ' + data['username'], status=500)
+    return HttpResponse('Success', status=201)
 
 
 def auth(request):
@@ -26,9 +27,9 @@ def auth(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return JsonResponse(None, status=200, safe=False)
+        return HttpResponse('Successful authorization', status=200)
     else:
-        return JsonResponse(None, status=401, safe=False)
+        return HttpResponse('Failed to log in', status=401)
 
 
 @login_required
