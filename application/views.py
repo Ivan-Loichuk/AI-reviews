@@ -8,36 +8,6 @@ from application.hotel_serializer import HotelSerializer
 from application.models import Hotel
 
 
-def registration(request):
-    data = JSONParser().parse(request)
-    user = User.objects.create_user(data['username'], data['email'], data['password'])
-    user.last_name = data['lastname']
-    user.first_name = data['firstname']
-    try:
-        user.save()
-    except:
-        return HttpResponse('Failed to create user: ' + data['username'], status=500)
-    return HttpResponse('Success', status=201)
-
-
-def auth(request):
-    data = JSONParser().parse(request)
-    username = data['username']
-    password = data['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return HttpResponse('Successful authorization', status=200)
-    else:
-        return HttpResponse('Failed to log in', status=401)
-
-
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponse('')
-
-
 @login_required
 def create_hotel(request):
     data = JSONParser().parse(request)
