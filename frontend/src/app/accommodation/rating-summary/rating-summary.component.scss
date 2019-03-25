@@ -1,0 +1,62 @@
+@import "../../../assets/scss/circle.scss";
+
+.accommodation-ratings{
+    padding: 3%;
+}
+.small-circle{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    .small{
+        font-size: 35px;
+        span{
+            font-size: 0.45em;
+            line-height: 2.3em;
+            width: 2.3em;
+            font-weight: 700;
+        }
+    }
+    span{
+        color: #000000;
+    }
+}
+.rating-circle{
+    span{
+        color: #000000;
+    }
+    
+}
+.small-circle .c100:hover > span {
+    font-size: 0.45em;
+    line-height: 2.3em;
+    width: 2.3em;
+    font-weight: 700;
+    color: #4db53c;
+}
+.hotel-ratings-details-list{
+    width: 40%;
+    .rating-list{
+        li{
+            position: relative;
+            padding: 10px 5px;
+        }
+    }
+}
+.map-hotelpage-rating-usp-container{
+    .list-iconic{
+        i{
+            margin-right: 5px;
+            color: #4db53c;
+        }
+    }
+}
+.hotel-rating-box-tool{
+    left: 0px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    padding: 0 30px;
+    min-height: 44px;
+    background: #cccccc;
+    border-radius: 3px;
+}

@@ -1,0 +1,23 @@
+.page-footer{
+    background-color: #3f51b5!important;
+    margin-top: 50px;
+    color: rgb(255, 255, 255);
+    .footer-copyright{
+        overflow: hidden;
+        background-color: rgba(0,0,0,.2);
+        color: rgba(255,255,255,.6);
+        padding-bottom: 5px!important;
+        .social-icon{
+            margin-bottom: 10px!important;
+            a{
+                cursor: pointer;
+                i:hover{
+                    color: rgb(255, 255, 255);;
+                }
+            }
+        }
+        .pb-3{
+            padding-bottom: 0!important;
+        }
+    }
+}

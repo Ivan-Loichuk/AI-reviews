@@ -1,0 +1,41 @@
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.search-bar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #094181;
+    background-size:cover;
+    .card-body{
+        padding: 0.1rem;
+        button{
+            padding: .2rem 1.5rem;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        i{
+            padding-left: 10px;
+        }
+    }
+}
+
+.banner{
+    padding-top:50px;
+    .carousel-control-next, .carousel-control-prev{
+        background-color: #094181;
+        width: 7%;
+    }
+}
+
+.hotel-cards{
+    padding-top:50px;
+}
+.navbar{
+    background: blue!important;
+}

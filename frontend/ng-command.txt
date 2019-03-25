@@ -1,0 +1,2 @@
+ng serve -o
+ng generate component header

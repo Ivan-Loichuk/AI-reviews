@@ -25,6 +25,7 @@ class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=512)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
