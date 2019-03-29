@@ -1,6 +1,6 @@
 <div class="container search-results">
     <!-- Begin of rows -->
-    <div class="row carousel-row">
+    <div class="row carousel-row" *ngFor="let hotel of hotels">
         <div class="col-xs-8 col-xs-offset-2 slide-row">
             <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
               <!-- Wrapper for slides -->
@@ -11,11 +11,9 @@
               </div>
             </div>
             <div class="slide-content">
-                <h4>Example product</h4>
+                <h4 (click)="checkHotel(hotel.id)"> {{ hotel.name }} </h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitrd
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitrd
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitrd
+                    {{ hotel.description }}
                 </p>
             </div>
             <div class="slide-rating">
@@ -29,73 +27,9 @@
             </div>
             <div class="slide-controls">
                 <span class="pull-right buttons">
-                    <button class="btn btn-sm btn-primary">See offer</button>
+                    <button class="btn btn-sm btn-primary" (click)="checkHotel(hotel.id)">See offer</button>
                 </span>
             </div>
         </div>
     </div>
-    <div class="row carousel-row">
-            <div class="col-xs-8 col-xs-offset-2 slide-row">
-                <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="http://lorempixel.com/150/150?rand=1" alt="Image">
-                    </div>
-                  </div>
-                </div>
-                <div class="slide-content">
-                    <h4>Example product</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr
-                    </p>
-                </div>
-                <div class="slide-rating">
-                    <span>
-                        Rating <span class="rating-value"><strong>9.5</strong></span>
-                    </span>
-                    <app-rating-stars [active]=1></app-rating-stars>
-                </div>
-                <div class="slide-price">
-                    <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-money-bill-alt"></i> Price from <span class="price"><strong>24</strong> PLN</span></button>
-                </div>
-                <div class="slide-controls">
-                    <span class="pull-right buttons">
-                        <button class="btn btn-sm btn-primary">See offer</button>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="row carousel-row">
-                <div class="col-xs-8 col-xs-offset-2 slide-row">
-                    <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
-                      <!-- Wrapper for slides -->
-                      <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="http://lorempixel.com/150/150?rand=1" alt="Image">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="slide-content">
-                        <h4>Example product</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr
-                        </p>
-                    </div>
-                    <div class="slide-rating">
-                        <span>
-                            Rating <span class="rating-value"><strong>9.5</strong></span>
-                        </span>
-                        <app-rating-stars [active]=1></app-rating-stars>
-                    </div>
-                    <div class="slide-price">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-money-bill-alt"></i> Price from <span class="price"><strong>24</strong> PLN</span></button>
-                    </div>
-                    <div class="slide-controls">
-                        <span class="pull-right buttons">
-                            <button class="btn btn-sm btn-primary">See offer</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
 </div>

@@ -18,13 +18,22 @@ def create_hotel(request):
     return JsonResponse(hotel_serializer.errors, status=400)
 
 
-def get_hotels(request):
+def get_hotels():
     hotels = Hotel.objects.all().values()
     return JsonResponse(list(hotels), content_type="application/json", safe=False)
 
 
-def search_hotels(request, city):
-    hotels = Hotel.objects.filter(city=city).values();
+def search_hotels(request):
+    data = JSONParser().parse(request)
+    print(data)
+    if data['types'] and not data['city']:
+        hotels = Hotel.objects.filter(hotel_type__type__in=data['types'], city__icontains=data['city']).values()
+    elif data['types']:
+        hotels = Hotel.objects.filter(hotel_type__type__in=data['types']).values()
+    elif not data['city']:
+        hotels = Hotel.objects.filter(city__icontains=data['city']).values()
+    else:
+        hotels = hotels = Hotel.objects.all().values()
     return JsonResponse(list(hotels), content_type="application/json", safe=False)
 
 

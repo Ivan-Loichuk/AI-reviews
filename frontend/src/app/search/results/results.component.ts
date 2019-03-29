@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { environment as env } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Hotel } from '../../dto/hotel';
 
 @Component({
   selector: 'app-search-results',
@@ -7,10 +10,15 @@ import { environment as env } from '../../../environments/environment';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit {
-  public env = env;
-  constructor() { }
+  @Input()
+  hotels: Array<Hotel>;
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
 
+  checkHotel(id) {
+    this.router.navigate(['accommodation/' + id])
+  }
 }

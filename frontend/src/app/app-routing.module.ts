@@ -12,8 +12,8 @@ import { LoginComponent } from './admin/login/login.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'accommodation', component: AccommodationComponent },
+  { path: 'search/:city', component: SearchComponent },
+  { path: 'accommodation/:id', component: AccommodationComponent },
   { path: 'reviews', component: ReviewsAllComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/accommodation', component: AccommodationListComponent },

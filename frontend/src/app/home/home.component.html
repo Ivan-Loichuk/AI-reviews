@@ -9,11 +9,11 @@
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter city or region">
+                            <input #city class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter city or region">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit" (click)="search(city.value)">Search</button>
                         </div>
                         <!--end of col-->
                   </div>

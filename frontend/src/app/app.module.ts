@@ -31,6 +31,7 @@ import { DelUserComponent } from './modal-windows/del-user/del-user.component';
 import { EditUserComponent } from './modal-windows/edit-user/edit-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '../../node_modules/@angular/forms';
+import { FilterService } from './search/filters/filter.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { FormsModule } from '../../node_modules/@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
