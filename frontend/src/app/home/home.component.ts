@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { Hotel } from '../dto/hotel';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  hotels = [];
+  hotels: Array<Hotel> = [];
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,6 @@ export class HomeComponent implements OnInit {
   }
 
   getHotels() {
-    this.http.get('api/all').subscribe(data => console.log(data));
+    this.http.get<Array<Hotel>>('api/all').subscribe(data => this.hotels = data);
   }
 }

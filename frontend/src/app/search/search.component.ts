@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Hotel } from '../dto/hotel';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  hotels: Array<Hotel> = [];
+
+  constructor(private http: HttpClient, private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    this.activeRoute.params.subscribe((params: Params) => {
+
+    });
   }
 
+  searchHotel(city) {
+    this.http.get<Array<Hotel>>('api/hotels/' + city).subscribe(data => this.hotels = data);
+  }
 }
