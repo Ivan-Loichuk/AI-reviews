@@ -4,7 +4,7 @@ from rest_framework.parsers import JSONParser
 
 from application.models.comment_serializer import CommentSerializer
 from application.models.hotel_serializer import HotelSerializer
-from application.models.models import Hotel, Comment
+from application.models.models import Hotel, Comment, HotelType
 from application.models.type_serializer import TypeSerializer
 
 
@@ -25,12 +25,11 @@ def get_hotels():
 
 def search_hotels(request):
     data = JSONParser().parse(request)
-    print(data)
-    if data['types'] and not data['city']:
+    if data['types'] and not data['city'] == '':
         hotels = Hotel.objects.filter(hotel_type__type__in=data['types'], city__icontains=data['city']).values()
     elif data['types']:
         hotels = Hotel.objects.filter(hotel_type__type__in=data['types']).values()
-    elif not data['city']:
+    elif not data['city'] == '':
         hotels = Hotel.objects.filter(city__icontains=data['city']).values()
     else:
         hotels = hotels = Hotel.objects.all().values()
@@ -39,6 +38,9 @@ def search_hotels(request):
 
 def get_hotel(request, hotel_id):
     hotel = Hotel.objects.filter(id=hotel_id).values()[0]
+    hotel_type = HotelType.objects.filter(id=(hotel['hotel_type_id'])).values()[0]
+    hotel['hotel_type'] = hotel_type['type']
+    print(hotel)
     return JsonResponse(hotel, content_type="application/json", safe=False)
 
 

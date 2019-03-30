@@ -17,7 +17,10 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.searchHotel({city: params['city']});
+      if (params['city'] === 'all') {
+        this.searchHotel({city: '', types: []})
+      } else
+        this.searchHotel({city: params['city'], types: []});
     });
     this.filterService.filtersAsObs().subscribe(data => {
       this.searchHotel(data);

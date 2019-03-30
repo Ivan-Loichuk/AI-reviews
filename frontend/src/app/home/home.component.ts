@@ -19,10 +19,13 @@ export class HomeComponent implements OnInit {
   }
 
   getHotels() {
-    this.http.get<Array<Hotel>>('api/all').subscribe(data => this.hotels = data);
+    //this.http.get<Array<Hotel>>('api/all').subscribe(data => this.hotels = data);
   }
 
   search(city) {
-    this.router.navigate(['search/' + city]);
+    if (city === '') {
+      this.router.navigate(['search/all']);
+    } else
+      this.router.navigate(['search/' + city]);
   }
 }
