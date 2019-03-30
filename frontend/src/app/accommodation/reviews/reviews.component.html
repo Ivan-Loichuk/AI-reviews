@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     
-    <div class="col-md-6" *ngFor='let in of counter(4) ;let i = index'>
-        <ul id="comments" class="comment-list">    
+    <div class="col-md-6" *ngFor='let comment of comments'>
+        <ul id="comments" class="comment-list">
           <li id="comment" class="comment">
             <div class="comment-wrapper ">
               
@@ -13,7 +13,7 @@
                 <div class="guide__user-comment__meta">
                   <span title="Elizabeth B">
                     <a href="/hc/en-us/profiles/361115929888-Elizabeth-B">
-                      Elizabeth B
+                      {{ comments.sender }}
                     </a>
                   </span>
                   <ul class="meta-group">
@@ -25,8 +25,7 @@
                 </div>
               </header>
               <section class="comment-body">
-                <p>For Step 4ting the template in action. Am I missing something, or is there anything in the roadmap&nbsp;to 
-                have a template populate while the article is being edited? Thanks in advance!</p>
+                <p>{{ comment.content }}</p>
               </section>
             </div>
           </li>

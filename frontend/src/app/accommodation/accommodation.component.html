@@ -36,13 +36,12 @@
       <div class="card contact-block">
         <div class="card-block">
           <b>Contacts:</b> <br />
-          Phone: +1 129 209 291<br />
-          E-mail: <a href="mailto:support@mysite.com">support@mysite.com</a><br />
+          Phone: {{ hotel.phone }}<br />
+          E-mail: <a href="mailto:support@mysite.com">{{ hotel.email }}</a><br />
           <br /><br />
           <b>Address:</b><br />
-          Company Inc, <br />
-          Las vegas street 201<br />
-          55001 Nevada, USA<br /> 
+          {{ hotel.city }}<br />
+          {{ hotel.street }}<br /> 
         </div>
       </div>
       <div class="card rating-block">
@@ -56,13 +55,10 @@
       <app-modal-add-review></app-modal-add-review>
     </div>
  </div>
- <div class="row description-block">
+ <div *ngIf="hotel" class="row description-block">
     <div class="col-lg-9 col-xs-12">
       <h2 class="header"><strong>Description</strong></h2>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, 
-      feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, 
-          feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+      <p>{{ hotel.description }}</p>
     </div>
   </div>
 
@@ -75,8 +71,8 @@
   <div class="row reviews-block">
         <div class="col-lg-12 col-xs-12 rh">
           <h2 class="header"><strong>Reviews</strong></h2> 
-          <a routerLink="/reviews"><span>See all guest reviews</span></a>
+          <a (click)="allReviews()"><span>See all guest reviews</span></a>
         </div>
-        <app-accommodation-reviews></app-accommodation-reviews>  
+        <app-accommodation-reviews *ngIf="comments" [comments]="comments.length > 4? comments.slice(0, 4) : comments"></app-accommodation-reviews>  
   </div>
 </div>

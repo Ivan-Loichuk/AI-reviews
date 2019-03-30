@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-accommodation-reviews',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reviews.component.scss']
 })
 export class ReviewsComponent implements OnInit {
+  @Input()
+  comments: Array<Comment>;
 
   constructor() { }
 

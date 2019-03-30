@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 
@@ -40,7 +41,6 @@ def get_hotel(request, hotel_id):
     hotel = Hotel.objects.filter(id=hotel_id).values()[0]
     hotel_type = HotelType.objects.filter(id=(hotel['hotel_type_id'])).values()[0]
     hotel['hotel_type'] = hotel_type['type']
-    print(hotel)
     return JsonResponse(hotel, content_type="application/json", safe=False)
 
 
@@ -65,5 +65,8 @@ def add_hotel_type(request):
 
 def get_comments(request, hotel_id):
     comments = Comment.objects.filter(hotel=hotel_id).values()
+    for index, val in enumerate(comments):
+        user = User.objects.filter(id=val['sender_id']).values()[0]
+        comments[index]['sender'] = user['username']
     return JsonResponse(list(comments), content_type="application/json", safe=False)
 

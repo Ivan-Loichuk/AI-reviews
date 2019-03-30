@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from '../dto/hotel';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Storage } from '../shared/storage';
 
 @Component({
   selector: 'app-accommodation',
@@ -10,8 +11,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class AccommodationComponent implements OnInit {
   hotel: Hotel;
+  comments: Array<Comment>;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -21,5 +23,12 @@ export class AccommodationComponent implements OnInit {
 
   getHotel(id) {
     this.http.get<Hotel>('api/hotel/' + id).subscribe(data => this.hotel = data);
+    this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => this.comments = data);
+  }
+
+  allReviews() {
+    this.storage.put('comments', this.comments);
+    this.storage.put('hotel', this.hotel);
+    this.router.navigate(['/reviews/' + this.hotel.id]);
   }
 }

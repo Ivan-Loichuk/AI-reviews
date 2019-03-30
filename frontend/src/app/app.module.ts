@@ -32,6 +32,7 @@ import { EditUserComponent } from './modal-windows/edit-user/edit-user.component
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { FilterService } from './search/filters/filter.service';
+import { Storage } from './shared/storage';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { FilterService } from './search/filters/filter.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [FilterService],
+  providers: [FilterService, Storage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

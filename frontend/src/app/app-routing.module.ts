@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'search/:city', component: SearchComponent },
   { path: 'accommodation/:id', component: AccommodationComponent },
-  { path: 'reviews', component: ReviewsAllComponent },
+  { path: 'reviews/:id', component: ReviewsAllComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/accommodation', component: AccommodationListComponent },
   { path: 'admin/users', component: UsersComponent },
