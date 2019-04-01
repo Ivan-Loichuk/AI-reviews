@@ -22,13 +22,18 @@ export class AccommodationComponent implements OnInit {
   }
 
   getHotel(id) {
-    this.http.get<Hotel>('api/hotel/' + id).subscribe(data => this.hotel = data);
-    this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => this.comments = data);
+    this.http.get<Hotel>('api/hotel/' + id).subscribe(data => {
+      this.hotel = data;
+      this.storage.put('hotel', this.hotel);
+    });
+    
+    this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => {
+      this.comments = data;
+      this.storage.put('comments', this.comments);
+    });
   }
 
   allReviews() {
-    this.storage.put('comments', this.comments);
-    this.storage.put('hotel', this.hotel);
     this.router.navigate(['/reviews/' + this.hotel.id]);
   }
 }

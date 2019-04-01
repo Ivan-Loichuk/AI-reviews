@@ -9,7 +9,7 @@ from application.models.models import Hotel, Comment, HotelType
 from application.models.type_serializer import TypeSerializer
 
 
-#@login_required
+@login_required
 def create_hotel(request):
     data = JSONParser().parse(request)
     hotel_serializer = HotelSerializer(data=data)
@@ -47,11 +47,14 @@ def get_hotel(request, hotel_id):
 @login_required
 def add_comment(request):
     data = JSONParser().parse(request)
+    user = request.user
+    data['sender'] = User.objects.get(username=user).id
+
     comment_serializer = CommentSerializer(data=data)
     if comment_serializer.is_valid():
         comment_serializer.save()
         return JsonResponse(comment_serializer.data, status=201)
-    return JsonResponse(comment_serializer.errors, status=400)
+    return JsonResponse(comment_serializer.errors, status=500)
 
 
 def add_hotel_type(request):

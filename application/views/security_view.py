@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 
 
@@ -13,7 +13,7 @@ def registration(request):
         user.save()
     except:
         return HttpResponse('Failed to create user: ' + data['username'], status=500)
-    return HttpResponse('Success', status=201)
+    return JsonResponse('Success', status=201, safe=False)
 
 
 def auth(request):
@@ -23,12 +23,12 @@ def auth(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return HttpResponse('Successful authorization', status=200)
+        return JsonResponse('Successful authorization', status=200, safe=False)
     else:
-        return HttpResponse('Failed to log in', status=401)
+        return JsonResponse('Failed to log in', status=401, safe=False)
 
 
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponse('')
+    return HttpResponse(200)

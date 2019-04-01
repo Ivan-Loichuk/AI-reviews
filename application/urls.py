@@ -10,8 +10,8 @@ urlpatterns = [
     path('api/logout', csrf_exempt(security_view.user_logout), name='user_logout'),
     path('api/all', hotel_view.get_hotels, name='all'),
     path('api/hotel/<int:hotel_id>', hotel_view.get_hotel, name='get_hotel'),
-    path('api/type', hotel_view.add_hotel_type, name='name=add_hotel_type'),
-    path('api/hotel/comment', hotel_view.add_comment, name='name=add_comment'),
+    path('api/type', hotel_view.add_hotel_type, name='add_hotel_type'),
+    path('api/hotel/comment', hotel_view.add_comment, name='add_comment'),
     path('api/hotels/search', hotel_view.search_hotels, name='search_hotels'),
-    path('api/hotel/<int:hotel_id>/comments', hotel_view.get_comments, name='name=get_Comments')
+    path('api/hotel/<int:hotel_id>/comments', hotel_view.get_comments, name='get_Comments')
 ]
