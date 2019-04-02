@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-6" *ngFor='let comment of comments'>
+        <ul id="comments" class="comment-list">
+          <li id="comment" class="comment">
+            <div class="comment-wrapper ">
+              
+              <header class="guide__user-comment__header">
+                <div class="guide__user-avatar__wrap">
+                  <div class="guide__user-avatar" style="background-image: url(https://support.zendesk.com/system/photos/3600/8030/4948/avatar-1520372215.jpg);"></div>
+                </div>
+                <div class="guide__user-comment__meta">
+                  <span title="Elizabeth B">
+                    <a href="/hc/en-us/profiles/361115929888-Elizabeth-B">
+                      {{ comments.sender }}
+                    </a>
+                  </span>
+                  <ul class="meta-group">
+                      <li class="meta-data">2 months ago</li>
+                  </ul>
+                </div>
+                <div class="rating-stars">
+                    <app-rating-stars></app-rating-stars>
+                </div>
+              </header>
+              <section class="comment-body">
+                <p>{{ comment.content }}</p>
+              </section>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>

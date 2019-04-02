@@ -1,0 +1,74 @@
+<div class="container-scroller">
+    <app-admin-top-nav></app-admin-top-nav>
+
+    <div class="container-fluid page-body-wrapper">
+
+      <app-admin-left-nav></app-admin-left-nav>
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+              <div class="col-md-12 grid-margin">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Accommodations</h3>
+                      <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                          <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Accommodation" />
+                    </div>
+                    <table class="table table-striped" id="accommodation-table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Type</th>
+                          <th>Location</th>
+                          <th>Email</th>
+                          <th>Controls</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor='let in of counter(4) ;let i = index'>
+                          <td>{{i}}</td>
+                          <td>Willa Grand Karpatia</td>
+                          <td>Apartament</td>
+                          <td>Zakopane</td>
+                          <td>support@mysite.com</td>
+                          <td>
+                              <i class="fas fa-edit" data-toggle="modal" data-target="#edit-accommodation"></i>
+                              <i class="fas fa-trash-alt" data-toggle="modal" data-target="#del-accommodation"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+          </div>
+        </div>
+        <!-- delete accommodation modal window -->
+        <app-modal-del-accommodation></app-modal-del-accommodation>
+        <!-- edit accommodation modal window -->
+        <app-modal-edit-accommodation></app-modal-edit-accommodation>
+        
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
+              <a href="http://www.venuscorp.com/" target="_blank">Venus</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>

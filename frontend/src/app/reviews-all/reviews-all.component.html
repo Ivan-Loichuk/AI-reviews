@@ -1,0 +1,55 @@
+<div class="container reviews">
+  <div class="row">
+      <app-breadcrumbs></app-breadcrumbs>
+  </div>
+
+  <div *ngIf="hotel && comments" class="row">
+    <div class="col-md-3">
+        <div class="card" style="width: 16rem;">
+            <img class="card-img-top" src="https://www.mozambiquetravel.com/wp-content/uploads/2014/10/Massinga-Beach-Lodge-Mozambique-Luxurious-Accommodation1-286x180.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"> {{ hotel.name }}</h5>
+              <app-rating-stars></app-rating-stars>
+            </div>
+        </div>
+        <div class="card rating-block">
+            <div class="card-block">
+                <b>Rating:  </b>
+                <span>9.8 / 10</span>
+                <br>
+                <br>
+                <a href="#" class="btn btn-primary add-review-btn" data-toggle="modal" data-target="#add-review-form">Add review</a>
+                <app-modal-add-review></app-modal-add-review>
+              </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="pagination-block">
+                  <app-pagination></app-pagination>
+              </div>
+              <h3>User Comments</h3>
+            </div><!-- /col-sm-12 -->
+          </div><!-- /row -->
+          <div *ngFor="let comment of comments" class="row comment-row">
+            <div class="col-sm-1">
+              <div class="thumbnail">
+                <img class="img-fluid user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+              </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+        
+            <div class="col-sm-11">
+              <div class="card">
+                <div class="card-header">
+                  <strong>{{ comment.sender }}</strong> <span class="text-muted">commented 5 days ago</span>
+                </div>
+                <div class="card-body">
+                  {{ comment.content }}
+                </div><!-- /panel-body -->
+              </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+          </div><!-- /row -->
+    </div>
+  </div>
+</div><!-- /container -->

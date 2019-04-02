@@ -1,0 +1,60 @@
+.contact-block{
+    padding: 10%;
+    border: 1px solid rgba(0,0,0,.225);
+}
+.carousel-inner{
+    width:100%;
+    max-height: 407px !important;
+}
+.accommodation-name{
+    font-size: 24px;
+    color: #173d67;
+}
+.accommodation-type{
+    font-size: 18px;
+    margin-left: 3px;
+}
+.contact-block{
+    margin-top: 35px;
+}
+.rating-block{
+    margin-top: 10px;
+    border: 1px solid rgba(0,0,0,.225);
+}
+.rating-block{
+    span{
+        font-size: 18px;
+        margin-left: 5px;
+    }
+    padding: 10%;
+}
+.reviews-header{
+    width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 5px 15px;
+    text-decoration: underline;
+}
+
+.description-block{
+    padding-top: 10px;
+}
+.header{
+    font-size: 24px;
+    color: #173d67;
+    font-weight: 700;
+    width: 80%;
+}
+.reviews-block{
+    .rh{
+       display: flex; 
+    }
+    a{
+        text-align: right;
+        width: 20%;
+    }
+}
+.add-review{
+    margin-top: 10px;
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+.thumbnail {
+    padding:0px;
+}
+.card {
+	position:relative;
+}
+.card>.card-heading:after,.card>.card-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.card>.card-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.card>.card-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+.comment-row{
+	margin-top: 15px;
+}
+.reviews{
+	padding-top: 15px;
+}
+.add-review-btn{
+	width: 100%;
+}
+.rating-block{
+    margin-top: 10px;
+    border: 1px solid rgba(0,0,0,.225);
+}
+.rating-block{
+    span{
+        font-size: 18px;
+        margin-left: 5px;
+    }
+    padding: 10%;
+}

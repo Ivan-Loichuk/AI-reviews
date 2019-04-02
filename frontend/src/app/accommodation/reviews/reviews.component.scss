@@ -1,0 +1,83 @@
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .comment{
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+    }
+    .guide__user-avatar__wrap{
+        display: inline-block;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        width: 50px;
+        flex: none;
+        .guide__user-avatar{
+            background-color: #fff;
+            background-size: cover;
+            border-radius: 50%;
+            height: 100%;
+            overflow: hidden;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+
+    .guide__user-comment__header{
+        align-items: flex-start;
+        display: flex;
+        flex-flow: row nowrap;
+        position: relative;
+
+        .rating-stars{
+            width: 30%;
+            text-align: right;
+        }
+    
+        .guide__user-comment__meta{
+            height: 50px;
+            margin-left: .7em;
+            width: 60%;
+            ul{
+                list-style: none;
+                .meta-data{
+                    font-size: 13px;
+                    font-weight: 400;
+                }
+            }
+        }
+        .guide__user-comment__menu{
+            align-self: center;
+            position: absolute;
+            right: 0;
+            top: 0;
+            .dropdown{
+                position: relative;
+                display: inline-block;
+                .dropdown-toggle{
+                    cursor: pointer;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+.comment-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.225);
+    padding: 20px;
+    .comment-body{
+        -webkit-hyphens: auto;
+        word-break: break-word;
+        line-height: 1.4;
+        display: block;
+        p{
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,145 @@
+/*------------------------------------------------------------------
+ [Master Stylesheet]
+
+  Project:	Star Admin Bootstrap Template [Free Version]
+  Version:	2.0.0
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------
+  ===== Table of Contents =====
+
+  * Bootstrap functions
+  * Template variables
+  * SCSS Compass Functions
+  * Boostrap Main SCSS
+  * Template mixins
+    + Animation Mixins
+    + Background Mixins
+    + BlockQuote Mixins
+    + Badges Mixins
+    + Buttons Mixins
+    + Cards Mixins
+    + Miscellaneous Mixins
+    + Text Mixins
+  * Core Styles
+    + Reset Styles
+    + Fonts
+    + Functions
+    + Sidebar
+    + Navbar
+    + Typography
+    + Miscellaneous
+    + Footer
+    + Layouts
+    + Utilities
+    + Demo styles
+    + Dashboard
+  * Components
+    + Badges
+    + Bootstrap Progress
+    + Buttons
+    + Cards
+    + Checkboxes and Radios
+    + Dropdowns
+    + Forms
+    + Icons
+    + Lists
+    + Nav
+    + New Account
+    + Preview
+    + Tables
+  * Landing screens
+    + Auth
+    + Error
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------*/
+
+/* === Import Bootstrap functions and variables === */
+
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+/*-------------------------------------------------------------------*/
+
+/* === Import template variables === */
+
+@import "../../assets/scss/_variables.scss";
+/*-------------------------------------------------------------------*/
+
+/* === SCSS Compass Functions === */
+
+@import "../../../node_modules/compass-mixins/lib/compass";
+@import "../../../node_modules/compass-mixins/lib/animate";
+/*-------------------------------------------------------------------*/
+
+/* === Boostrap Main SCSS === */
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+/*-------------------------------------------------------------------*/
+
+/* === Template mixins === */
+
+@import "../../assets/scss/admin/mixins/animation";
+@import "../../assets/scss/admin/mixins/background";
+@import "../../assets/scss/admin/mixins/blockqoute";
+@import "../../assets/scss/admin/mixins/badges";
+@import "../../assets/scss/admin/mixins/buttons";
+@import "../../assets/scss/admin/mixins/cards";
+@import "../../assets/scss/admin/mixins/misc";
+@import "../../assets/scss/admin/mixins/text";
+/*-------------------------------------------------------------------*/
+
+/* === Core Styles === */
+
+@import "../../assets/scss/admin/reset";
+@import "../../assets/scss/admin/fonts";
+@import "../../assets/scss/admin/functions";
+@import "../../assets/scss/admin/sidebar";
+@import "../../assets/scss/admin/navbar";
+@import "../../assets/scss/admin/typography";
+@import "../../assets/scss/admin/misc";
+@import "../../assets/scss/admin/footer";
+@import "../../assets/scss/admin/utilities";
+@import "../../assets/scss/admin/demo";
+@import "../../assets/scss/admin/dashboard";
+/*-------------------------------------------------------------------*/
+
+/* === Components === */
+
+@import "../../assets/scss/admin/components/badges";
+@import "../../assets/scss/admin/components/bootstrap-progress";
+@import "../../assets/scss/admin/components/buttons";
+@import "../../assets/scss/admin/components/cards";
+@import "../../assets/scss/admin/components/checkbox-radio";
+@import "../../assets/scss/admin/components/dropdown";
+@import "../../assets/scss/admin/components/forms";
+@import "../../assets/scss/admin/components/icons";
+@import "../../assets/scss/admin/components/lists";
+@import "../../assets/scss/admin/components/nav";
+@import "../../assets/scss/admin/components/new-account";
+@import "../../assets/scss/admin/components/preview";
+@import "../../assets/scss/admin/components/tables";
+/*-------------------------------------------------------------------*/
+
+/* === Landing screens === */
+
+@import "../../assets/scss/admin/landing-screens/auth";
+@import "../../assets/scss/admin/landing-screens/error";
+
+.stretch-card{
+  .fas{
+    font-size: 22px;
+  }
+  .fa-comments{
+    color: #e65251;
+  }
+  .fa-users{
+    color:#ffaf00;
+  }
+  .fa-tags{
+    color:#00ce68;
+  }
+  .fa-tv{
+    color:#8862e0;
+  }
+}
