@@ -44,13 +44,13 @@
           {{ hotel.street }}<br /> 
         </div>
       </div>
-      <div class="card rating-block">
+      <!-- <div class="card rating-block">
           <div class="card-block">
               <b>Rating:  </b>
               <span>9.8 / 10</span>
               <app-rating-stars></app-rating-stars>
           </div>
-      </div>
+      </div> -->
       <button type="button" class="btn btn-primary add-review" data-toggle="modal" data-target="#add-review-form">Add a review</button>
       <app-modal-add-review></app-modal-add-review>
     </div>
@@ -65,7 +65,7 @@
   <div class="row rating-summary-block">
       <div class="col-lg-9 col-xs-12">
           <h2 class="header"><strong>Rating summary</strong></h2>
-          <app-rating-summary></app-rating-summary>
+          <app-rating-summary *ngIf="comments" [guestReviews]="comments.length"></app-rating-summary>
       </div>
   </div>
   <div class="row reviews-block">

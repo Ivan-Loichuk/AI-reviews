@@ -5,8 +5,9 @@ from rest_framework.parsers import JSONParser
 
 from application.models.comment_serializer import CommentSerializer
 from application.models.hotel_serializer import HotelSerializer
-from application.models.models import Hotel, Comment, HotelType
+from application.models.hotel_models import Hotel, Comment, HotelType
 from application.models.type_serializer import TypeSerializer
+from application.statistics.network import NeuralNet
 
 
 @login_required
@@ -49,7 +50,12 @@ def add_comment(request):
     data = JSONParser().parse(request)
     user = request.user
     data['sender'] = User.objects.get(username=user).id
-
+    print('determining category...')
+    print(data['content'])
+    neural_net = NeuralNet('really bad hotel')
+    comment_mapping = neural_net.run_neural_network()
+    data['category'] = comment_mapping.category
+    data['type'] = comment_mapping.comment_type
     comment_serializer = CommentSerializer(data=data)
     if comment_serializer.is_valid():
         comment_serializer.save()

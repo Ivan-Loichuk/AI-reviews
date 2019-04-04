@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from application.models.models import Hotel
+from application.models.hotel_models import Hotel
 
 
 class HotelSerializer(serializers.ModelSerializer):

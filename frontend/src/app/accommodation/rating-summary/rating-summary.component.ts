@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rating-summary',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rating-summary.component.scss']
 })
 export class RatingSummaryComponent implements OnInit {
+
+  @Input()
+  guestReviews;
 
   constructor() { }
 

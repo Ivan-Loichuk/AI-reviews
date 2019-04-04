@@ -1,9 +1,5 @@
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from rest_framework.authtoken.models import Token
 
 
 class HotelType(models.Model):
@@ -22,8 +18,27 @@ class Hotel(models.Model):
     description = models.CharField(max_length=1024)
 
 
+# class CommentCategory(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     type = models.CharField
+#     category = models.CharField
+
+
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=512)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    #type = models.ForeignKey(CommentCategory, on_delete=models.CASCADE)
+    type = models.CharField
+    category = models.CharField
+
+
+class HotelStatistic(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    personal = models.IntegerField
+    parking = models.IntegerField
+    pet_friendly = models.IntegerField
+    restaurant = models.IntegerField
+    total_opinion = models.IntegerField
+    summary = models.IntegerField
