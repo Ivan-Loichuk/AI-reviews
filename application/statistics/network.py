@@ -106,7 +106,7 @@ def train_neural_network(x):
             epoch +=1
 
 
-train_neural_network(x)
+#train_neural_network(x)
 
 
 def test_neural_network():
@@ -141,77 +141,68 @@ def test_neural_network():
         print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
 
 
-test_neural_network()
+#test_neural_network()
 
 
-class NeuralNet:
-    def __init__(self, comment):
-        self.comment = comment
+def use_neural_network(input_data):
+    prediction = neural_network_model(x)
+    with open('./application/statistics/lexicon.pickle','rb') as f:
+        lexicon = pickle.load(f)
 
-    def run_neural_network(self):
-        self.use_neural_network(self.comment)
+    with tf.Session() as sess:
+        sess.run(tf.initialize_all_variables())
+        saver.restore(sess,"./application/statistics/model.ckpt")
+        current_words = word_tokenize(input_data.lower())
+        current_words = [lemmatizer.lemmatize(i) for i in current_words]
+        features = np.zeros(len(lexicon))
 
-    def use_neural_network(self, input_data):
-        prediction = neural_network_model(x)
-        with open('./application/statistics/lexicon.pickle','rb') as f:
-            lexicon = pickle.load(f)
+        for word in current_words:
+            if word.lower() in lexicon:
+                index_value = lexicon.index(word.lower())
+                # OR DO +=1, test both
+                features[index_value] += 1
 
-        with tf.Session() as sess:
-            sess.run(tf.initialize_all_variables())
-            saver.restore(sess,"./application/statistics/model.ckpt")
-            current_words = word_tokenize(input_data.lower())
-            current_words = [lemmatizer.lemmatize(i) for i in current_words]
-            features = np.zeros(len(lexicon))
-
-            for word in current_words:
-                if word.lower() in lexicon:
-                    index_value = lexicon.index(word.lower())
-                    # OR DO +=1, test both
-                    features[index_value] += 1
-
-            features = np.array(list(features))
-            result = (sess.run(tf.argmax(prediction.eval(feed_dict={x: [features]}), 1)))
-            if result[0] == 0:
-                print('Positive personal:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 1:
-                print('Negative personal:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 2:
-                print('Positive Location:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 3:
-                print('Negative Location:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 4:
-                print('Positive Parking:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 5:
-                print('Negative Parking:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 6:
-                print('Positive pet friendly:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 7:
-                print('Negative pet friendly:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 8:
-                print('Positive Restaurant:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 9:
-                print('Negative Restaurant:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 10:
-                print('Positive total opinion:',input_data)
-                return Mapped('personal', 'positive')
-            elif result[0] == 11:
-                print('Negative total opinion:',input_data)
-                return Mapped('personal', 'positive')
-            return Mapped('total', 'positive')
+        features = np.array(list(features))
+        result = (sess.run(tf.argmax(prediction.eval(feed_dict={x:[features]}),1)))
+        if result[0] == 0:
+            print('Positive personal:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 1:
+            print('Negative personal:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 2:
+            print('Positive Location:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 3:
+            print('Negative Location:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 4:
+            print('Positive Parking:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 5:
+            print('Negative Parking:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 6:
+            print('Positive pet friendly:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 7:
+            print('Negative pet friendly:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 8:
+            print('Positive Restaurant:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 9:
+            print('Negative Restaurant:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 10:
+            print('Positive total opinion:',input_data)
+            return Mapped('personal', 'positive')
+        elif result[0] == 11:
+            print('Negative total opinion:',input_data)
+            return Mapped('personal', 'positive')
+        return Mapped('total', 'positive')
 
 
-net = NeuralNet('Amazing personal')
-net.run_neural_network()
 # use_neural_network('Awful personal')
 # use_neural_network('Nice hotel, especially parking.')
 # use_neural_network('I didnt like a restaurant')
