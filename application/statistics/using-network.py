@@ -6,7 +6,6 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from tensorflow.python import pywrap_tensorflow
 
-from application.statistics.network import Mapped
 
 lemmatizer = WordNetLemmatizer()
 

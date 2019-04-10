@@ -41,6 +41,7 @@ class Model(object):
         self.saver = tf.train.Saver()
         self.tf_log = './tf.log'
         self.sess = tf.Session()
+        self.sess.run(tf.initialize_all_variables())
         self.saver.restore(self.sess, self.path + "model.ckpt")
 
     def neural_network_model(self, data):
@@ -142,14 +143,14 @@ class Model(object):
 
     #test_neural_network()
 
-    path = './application/statistics/'
+    path = './'#'./application/statistics/'
 
     def use_neural_network(self, input_data):
         prediction = self.neural_network_model(self.x)
         with open(self.path + 'lexicon.pickle','rb') as f:
             lexicon = pickle.load(f)
 
-        self.sess.run(tf.global_variables_initializer())
+        #self.sess.run(tf.global_variables_initializer())
         current_words = word_tokenize(input_data.lower())
         current_words = [self.lemmatizer.lemmatize(i) for i in current_words]
         features = np.zeros(len(lexicon))
@@ -197,12 +198,13 @@ class Model(object):
         elif result[0] == 11:
             print('Negative total opinion:',input_data)
             return Mapped('personal', 'positive')
+        print('total', 'positive')
         return Mapped('total', 'positive')
 
 
-#model = Model()
-#model.train_neural_network()
-#model.test_neural_network()
-#model.use_neural_network('Awful personal')
-# use_neural_network('Nice hotel, especially parking.')
-# use_neural_network('I didnt like a restaurant')
+model = Model()
+model.use_neural_network('Amazing personal')
+model.use_neural_network('Nice hotel, especially parking.')
+model.use_neural_network('Personal was really helpfull')
+model.use_neural_network('Food was amazing!')
+model.use_neural_network('Cost != Quality')

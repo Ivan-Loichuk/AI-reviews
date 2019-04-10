@@ -13,6 +13,7 @@ export class ReviewsAllComponent implements OnInit {
 
   comments: Array<Comment>;
   hotel: Hotel;
+  stats;
 
   constructor(private storage: Storage, private http: HttpClient, private activRoute: ActivatedRoute) { }
 

@@ -10,11 +10,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL(
-            sqlparse.split(
-                "INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email) "
-                "VALUES (1, 'admin', null, null, 'admin', 'test', 'test', 'test@gmail.com');")
-        ),
+        # migrations.RunSQL(
+        #         #     sqlparse.split(
+        #         #         "INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email) "
+        #         #         "VALUES (1, 'admin', '12-12-12', null, 'admin', 'test', 'test', 'test@gmail.com');")
+        #         # ),
         # Hotel types
         migrations.RunSQL(
             sqlparse.split("INSERT INTO application_hoteltype (id, type) VALUES(1, 'Hotel');")
