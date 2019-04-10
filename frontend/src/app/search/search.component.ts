@@ -12,15 +12,19 @@ import { FilterService } from './filters/filter.service';
 export class SearchComponent implements OnInit {
 
   hotels: Array<Hotel> = [];
-
+  search_words: String = "";
   constructor(private http: HttpClient, private activeRoute: ActivatedRoute, private filterService: FilterService) {}
 
   ngOnInit() {
     this.activeRoute.params.subscribe((params: Params) => {
       if (params['city'] === 'all') {
         this.searchHotel({city: '', types: []})
-      } else
+        this.search_words = 'All';
+      } else{
         this.searchHotel({city: params['city'], types: []});
+        this.search_words = params['city'];
+      }
+        
     });
     this.filterService.filtersAsObs().subscribe(data => {
       this.searchHotel(data);

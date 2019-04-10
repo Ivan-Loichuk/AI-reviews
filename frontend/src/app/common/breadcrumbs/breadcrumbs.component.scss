@@ -1,3 +1,11 @@
 .breadcrumb{
     background-color: inherit!important;
 }
+.hover{
+    color: #007bff!important;
+    &:hover{
+        cursor:pointer;
+        text-decoration: underline!important;
+        color: #0056b3 !important;
+    }
+}

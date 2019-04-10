@@ -1,6 +1,6 @@
 <div class="container accommodation">
   <div class="row">
-      <app-breadcrumbs></app-breadcrumbs>
+      <app-breadcrumbs [city]="hotel.city" [name]="hotel.name" [hotel_type]="hotel.hotel_type"></app-breadcrumbs>
   </div>
 
  <div class="row" *ngIf="hotel">
@@ -15,13 +15,13 @@
         </ul>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://www.visitgeelongbellarine.com.au/media/1002/bayside-geelong.jpg?mode=crop&anchor=middlecenter&width=737&height=472&scale=both" alt="Los Angeles" width="1100" height="500">
+            <img src="http://lorempixel.com/1100/500/?rand={{ hotel.id }}" alt="Los Angeles" width="1100" height="500">
           </div>
           <div class="carousel-item">
-            <img src="http://coninst.co.uk/wp-content/uploads/2015/03/IMG_3891.jpg" alt="Chicago" width="1100" height="500"> 
+            <img src="http://lorempixel.com/1100/500/?rand={{ hotel.id + 1 }}" alt="Chicago" width="1100" height="500"> 
           </div>
           <div class="carousel-item">
-            <img src="http://blink182-tickets.com/wp-content/uploads/2018/03/Suitable-Accommodation.jpg" alt="New York" width="1100" height="500">
+            <img src="http://lorempixel.com/1100/500/?rand={{ hotel.id + 2 }}" alt="New York" width="1100" height="500">
           </div>
         </div>
         <a class="carousel-control-prev" href="#demo" data-slide="prev">

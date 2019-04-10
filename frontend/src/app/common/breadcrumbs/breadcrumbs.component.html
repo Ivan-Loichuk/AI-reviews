@@ -1,7 +1,13 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Accommodation in Zakopane</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Willa Grand Karpatia</li>
+    <li class="breadcrumb-item"><a (click)="navigateHome()" class="hover">Home</a></li>
+    <li class="breadcrumb-item" *ngIf="city">
+      <a (click)="search(city)" class="hover">
+        <span *ngIf="hotel_type">{{hotel_type | titlecase}}</span>
+        <span *ngIf="!hotel_type">Accommodations</span>
+         in {{city | titlecase}}
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="name">{{name}}</li>
   </ol>
 </nav>
