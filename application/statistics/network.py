@@ -165,17 +165,7 @@ class Model(object):
                     features[index_value] += 1
 
             features = np.array(list(features))
-            graph = tf.get_default_graph()
-            # var = [n.name for n in tf.get_default_graph().as_graph_def().node]
-            # print(var)
-            # input_x = graph.get_tensor_by_name("Placeholder:0")
-            # result = graph.get_tensor_by_name("Placeholder_1:0")
-            # print(input_x)
-            # print(result)
-            # print(result)
             result = (sess.run(tf.argmax(prediction.eval(session=sess, feed_dict={self.x: [features]}), 1)))
-            # result = prediction.eval(session=sess, feed_dict={self.x:[features]})
-            # result = tf.argmax(result, 1)
 
             if result[0] == 0:
                 print('Positive personal:',input_data)
@@ -213,8 +203,6 @@ class Model(object):
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
                 return Mapped('personal', 'positive')
-            # print('total', 'positive')
-            # return Mapped('total', 'positive')
 
         # with tf.Session() as sess:
         #     self.saver.restore(sess, self.path + "./model.ckpt")
