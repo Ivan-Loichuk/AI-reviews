@@ -31,22 +31,22 @@ class Migration(migrations.Migration):
         # Hotels
         migrations.RunSQL(
             sqlparse.split(
-                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description) "
-                "VALUES(1, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 1, 'Relax take it easy');")
+                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description, stat_summary) "
+                "VALUES(1, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 1, 'Relax take it easy', 0);")
         ),
         migrations.RunSQL(
             sqlparse.split(
-                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description) "
-                "VALUES(2, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 2, 'Relax take it easy');")
+                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description, stat_summary) "
+                "VALUES(2, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 2, 'Relax take it easy', 0);")
         ),
         migrations.RunSQL(
             sqlparse.split(
-                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description) "
-                "VALUES(3, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 3, 'Relax take it easy');")
+                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description, stat_summary) "
+                "VALUES(3, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 3, 'Relax take it easy', 0);")
         ),
         migrations.RunSQL(
             sqlparse.split(
-                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description) "
-                "VALUES(4, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 4, 'Relax take it easy');")
+                "INSERT INTO application_hotel (id, name, city, street, phone, email, hotel_type_id, description, stat_summary) "
+                "VALUES(4, 'Super Hotel', 'Some city', 'Some street', '484848', 'email@gmail.com', 4, 'Relax take it easy', 0);")
         )
     ]

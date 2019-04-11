@@ -13,6 +13,7 @@ from application.statistics.statistics_service import StatisticsService
 
 statisticsService = StatisticsService()
 
+
 @login_required
 def create_hotel(request):
     data = JSONParser().parse(request)
@@ -55,9 +56,9 @@ def add_comment(request):
     data['sender'] = User.objects.get(username=data['sender']).id # user.id
     model = Model()
     comment_mapping = model.use_neural_network(data['content'])
-    data['category'] = comment_mapping.category
-    data['type'] = comment_mapping.comment_type
-    statisticsService.compute_stats(comment_mapping, data['hotel'])
+    # data['category'] = comment_mapping.category
+    # data['type'] = comment_mapping.comment_type
+    #statisticsService.compute_stats(comment_mapping, data['hotel'])
     comment_serializer = CommentSerializer(data=data)
     if comment_serializer.is_valid():
         comment_serializer.save()

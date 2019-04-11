@@ -16,16 +16,16 @@ class Hotel(models.Model):
     email = models.CharField(max_length=256)
     hotel_type = models.ForeignKey(HotelType, on_delete=models.CASCADE)
     description = models.CharField(max_length=1024)
-    stat_summary = models.IntegerField
+    stat_summary = models.IntegerField()
 
 
 class HotelStatistic(models.Model):
     id = models.AutoField(primary_key=True)
+    category = models.CharField(max_length=256)
+    counter = models.IntegerField()
+    type = models.CharField(max_length=256)
+    stat = models.IntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.Case)
-    category = models.CharField
-    counter = models.IntegerField
-    type = models.CharField
-    stat = models.IntegerField
 
 
 class Comment(models.Model):
@@ -33,6 +33,6 @@ class Comment(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=512)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    type = models.CharField
-    category = models.CharField
+    type = models.CharField(max_length=256)
+    category = models.CharField(max_length=256)
 
