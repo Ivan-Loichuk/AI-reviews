@@ -28,11 +28,11 @@ export class HomeComponent implements OnInit {
     //this.http.get<Array<Hotel>>('api/all').subscribe(data => this.hotels = data);
   }
 
-  search(city) {
+  search(city, page=1) {
     if (city === '') {
-      this.router.navigate(['search/all']);
+      this.router.navigate(['search/all/1']);
     } else
-      this.router.navigate(['search/' + city]);
+      this.router.navigate(['search/' + city + '/' + page]);
   }
 
    searchHotel(filters) {

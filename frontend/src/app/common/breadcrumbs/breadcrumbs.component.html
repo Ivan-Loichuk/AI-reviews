@@ -3,11 +3,12 @@
     <li class="breadcrumb-item"><a (click)="navigateHome()" class="hover">Home</a></li>
     <li class="breadcrumb-item" *ngIf="city">
       <a (click)="search(city)" class="hover">
-        <span *ngIf="hotel_type">{{hotel_type | titlecase}}</span>
-        <span *ngIf="!hotel_type">Accommodations</span>
+        <span *ngIf="hotel">{{hotel.hotel_type | titlecase}}</span>
+        <span *ngIf="!hotel">Accommodations</span>
          in {{city | titlecase}}
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page" *ngIf="name">{{name}}</li>
+    <li class="breadcrumb-item" *ngIf="hotel"><a (click)="checkHotel(hotel.id)" class="hover">{{hotel.name}}</a></li>
+    <li class="breadcrumb-item" *ngIf="static_text"><a (click)="allReviews(hotel.id)" class="hover">{{static_text | titlecase}}</a></li>
   </ol>
 </nav>
