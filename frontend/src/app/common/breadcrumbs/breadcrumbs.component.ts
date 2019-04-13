@@ -20,6 +20,8 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   search(city, page=1) {
+    city = city.toLowerCase();
+    
     if (city === '') {
       this.router.navigate(['search/all/1']);
     } else

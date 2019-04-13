@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   filters: Object = {};
 
   constructor(private http: HttpClient, private router: Router) {
+    // jak dodasz limit do sql wyszukiwania to zamienić Zakopane na "" i dodać this.filters['limit'] = 3
     this.filters['city'] = "Zakopane";
     this.filters['types'] = [];
 

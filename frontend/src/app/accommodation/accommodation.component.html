@@ -71,7 +71,7 @@
   <div class="row reviews-block">
         <div class="col-lg-12 col-xs-12 rh">
           <h2 class="header"><strong>Reviews</strong></h2> 
-          <a (click)="allReviews()"><span>See all guest reviews</span></a>
+          <a (click)="allReviews()" class="hover"><span>See all guest reviews</span></a>
         </div>
         <app-accommodation-reviews *ngIf="comments" [comments]="comments.length > 4? comments.slice(0, 4) : comments"></app-accommodation-reviews>  
   </div>

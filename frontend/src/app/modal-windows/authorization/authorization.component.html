@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Login/Registration</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"  #closeBtn>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -84,8 +84,11 @@
                                   <div class="form-group">
                                       <button (click)="signUp()" type="button" class="btn btn-primary btn-sm submit-button">
                                           Save & Continue</button>
-                                      <button type="button" class="btn btn-default btn-sm">
+                                      <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-sm" #closeBtn>
                                           Cancel</button>
+                                  </div>
+                                  <div class="alert alert-success" role="alert"  *ngIf="successMessage" type="success" (close)="successMessage = null">
+                                    Correct registration!
                                   </div>
                                 </form>
                             </div>
