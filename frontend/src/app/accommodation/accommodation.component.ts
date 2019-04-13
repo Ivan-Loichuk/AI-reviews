@@ -33,7 +33,7 @@ export class AccommodationComponent implements OnInit {
     });
   }
 
-  allReviews() {
-    this.router.navigate(['/reviews/' + this.hotel.id]);
+  allReviews(page = 1) {
+    this.router.navigate(['/reviews/' + this.hotel.id + '/' + page]);
   }
 }

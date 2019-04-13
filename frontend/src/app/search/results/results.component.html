@@ -5,15 +5,15 @@
             <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
-                <div class="item active">
-                    <img src="http://lorempixel.com/150/150?rand=1" alt="Image">
+                <div class="item active hover" (click)="checkHotel(hotel.id)">
+                    <img src="http://lorempixel.com/150/150/city?rand={{hotel.id}}" alt="Image">
                 </div>
               </div>
             </div>
             <div class="slide-content">
-                <h4 (click)="checkHotel(hotel.id)"> {{ hotel.name }} </h4>
+                <h4 (click)="checkHotel(hotel.id)" class="hover"> {{ hotel.name }} </h4>
                 <p>
-                    {{ hotel.description }}
+                    {{ hotel.description | slice:0:100 }}...
                 </p>
             </div>
             <div class="slide-rating">

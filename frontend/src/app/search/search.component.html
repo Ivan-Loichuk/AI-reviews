@@ -1,6 +1,6 @@
 <div class="container search">
     <div class="row">
-        <app-breadcrumbs></app-breadcrumbs>
+        <app-breadcrumbs city="{{search_words}}"></app-breadcrumbs>
     </div>
 
    <div class="row">
@@ -10,7 +10,7 @@
       </div>
       <div class="col-lg-9 col-xs-12">
           <div class="pagination-block">
-              <app-pagination></app-pagination>
+              <app-pagination [count_results]="20" [active_page]="1" [search_words]="search_words"></app-pagination>
           </div>
           
           <h4>Search result</h4>
