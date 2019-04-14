@@ -46,3 +46,30 @@
     }
     padding: 10%;
 }
+.f-labels{
+	float:right;
+	width: 60%;
+	.badge{
+		margin-left: 3px;
+	}
+	.remove-f{
+		position: relative;
+		top: -1px;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+}
+
+.form-check{ 
+	label{
+		margin-left: 10px;
+	}
+	input{
+		height: 18px;
+		width: 18px;
+	}
+}
+.header{
+	font-size: 18px;
+}
