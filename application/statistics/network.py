@@ -12,6 +12,10 @@ class Mapped:
 
 
 class Model(object):
+    POSITIVE = 'positive'
+    NEGATIVE = 'negative'
+    path = './application/statistics/docs/'
+    categories = ['staff', 'location', 'cleanliness', 'food', 'facilities', 'total']
 
     def __init__(self):
         tf.reset_default_graph()
@@ -40,6 +44,7 @@ class Model(object):
                         'bias':tf.Variable(tf.random_normal([self.n_classes]))}
 
         self.saver = tf.train.Saver()
+        self.tf_log = self.path + 'tf.log'
 
     def neural_network_model(self, data):
         l1 = tf.add(tf.matmul(data, self.hidden_1_layer['weight']), self.hidden_1_layer['bias'])
@@ -140,8 +145,6 @@ class Model(object):
 
     #test_neural_network()
 
-    path = './application/statistics/'
-
     def use_neural_network(self, input_data):
         prediction = self.neural_network_model(self.x)
         with open(self.path + 'lexicon.pickle','rb') as f:
@@ -165,37 +168,37 @@ class Model(object):
 
             if result[0] == 0:
                 print('Positive personal:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[0], self.POSITIVE)
             elif result[0] == 1:
                 print('Negative personal:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[0], self.NEGATIVE)
             elif result[0] == 2:
                 print('Positive Location:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[1], self.POSITIVE)
             elif result[0] == 3:
                 print('Negative Location:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[1], self.NEGATIVE)
             elif result[0] == 4:
                 print('Positive Parking:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[2], self.POSITIVE)
             elif result[0] == 5:
                 print('Negative Parking:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[2], self.NEGATIVE)
             elif result[0] == 6:
                 print('Positive pet friendly:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[3], self.POSITIVE)
             elif result[0] == 7:
                 print('Negative pet friendly:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[3], self.NEGATIVE)
             elif result[0] == 8:
                 print('Positive Restaurant:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[4], self.POSITIVE)
             elif result[0] == 9:
                 print('Negative Restaurant:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[5], self.NEGATIVE)
             elif result[0] == 10:
                 print('Positive total opinion:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[6], self.POSITIVE)
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
-                return Mapped('personal', 'positive')
+                return Mapped(self.categories[6], self.NEGATIVE)
