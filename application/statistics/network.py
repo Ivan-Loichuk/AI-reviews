@@ -40,10 +40,6 @@ class Model(object):
                         'bias':tf.Variable(tf.random_normal([self.n_classes]))}
 
         self.saver = tf.train.Saver()
-        # self.tf_log = './tf.log'
-        # self.sess = tf.Session()
-        # self.sess.run(tf.initialize_all_variables())
-        # self.saver.restore(self.sess, self.path + "model.ckpt")
 
     def neural_network_model(self, data):
         l1 = tf.add(tf.matmul(data, self.hidden_1_layer['weight']), self.hidden_1_layer['bias'])
@@ -203,63 +199,3 @@ class Model(object):
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
                 return Mapped('personal', 'positive')
-
-        # with tf.Session() as sess:
-        #     self.saver.restore(sess, self.path + "./model.ckpt")
-        #     current_words = word_tokenize(input_data.lower())
-        #     current_words = [self.lemmatizer.lemmatize(i) for i in current_words]
-        #     features = np.zeros(len(lexicon))
-        #     for word in current_words:
-        #         if word.lower() in lexicon:
-        #             index_value = lexicon.index(word.lower())
-        #             # OR DO +=1, test both
-        #             features[index_value] += 1
-        #
-        #     features = np.array(list(features))
-        #     result = (sess.run(tf.argmax(prediction.eval(session=sess, feed_dict={self.x:[features]}),1)))
-        #     if result[0] == 0:
-        #         print('Positive personal:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 1:
-        #         print('Negative personal:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 2:
-        #         print('Positive Location:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 3:
-        #         print('Negative Location:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 4:
-        #         print('Positive Parking:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 5:
-        #         print('Negative Parking:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 6:
-        #         print('Positive pet friendly:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 7:
-        #         print('Negative pet friendly:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 8:
-        #         print('Positive Restaurant:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 9:
-        #         print('Negative Restaurant:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 10:
-        #         print('Positive total opinion:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     elif result[0] == 11:
-        #         print('Negative total opinion:',input_data)
-        #         return Mapped('personal', 'positive')
-        #     print('total', 'positive')
-        #     return Mapped('total', 'positive')
-
-
-# model = Model()
-# model.use_neural_network('Amazing personal')
-# model.use_neural_network('Nice hotel, especially parking.')
-# model.use_neural_network('Personal was really helpfull')
-# model.use_neural_network('Food was amazing!')
-# model.use_neural_network('Cost != Quality')

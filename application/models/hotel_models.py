@@ -19,20 +19,23 @@ class Hotel(models.Model):
     stat_summary = models.IntegerField()
 
 
-class HotelStatistic(models.Model):
-    id = models.AutoField(primary_key=True)
-    category = models.CharField(max_length=256)
-    counter = models.IntegerField()
-    type = models.CharField(max_length=256)
-    stat = models.IntegerField()
-    hotel = models.ForeignKey(Hotel, on_delete=models.Case)
-
-
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=512)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    type = models.CharField(max_length=256)
+
+
+class CommentMapping(models.Model):
+    id = models.AutoField(primary_key=True)
     category = models.CharField(max_length=256)
+    type = models.CharField(max_length=256)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+
+class HotelStatistic(models.Model):
+    id = models.AutoField(primary_key=True)
+    category = models.CharField(max_length=256)
+    positive_counter = models.IntegerField()
+    negative_counter = models.IntegerField()
 
