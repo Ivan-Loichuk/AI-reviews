@@ -37,21 +37,5 @@ class HotelStatistic(models.Model):
     id = models.AutoField(primary_key=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     category = models.CharField(max_length=256)
-
-    staff_positive_counter = models.IntegerField()
-    staff_negative_counter = models.IntegerField()
-
-    location_positive_counter = models.IntegerField()
-    location_negative_counter = models.IntegerField()
-
-    cleanliness_positive_counter = models.IntegerField()
-    cleanliness_negative_counter = models.IntegerField()
-
-    food_positive_counter = models.IntegerField()
-    food_negative_counter = models.IntegerField()
-
-    facilities_positive_counter = models.IntegerField()
-    facilities_negative_counter = models.IntegerField()
-
-    total_positive_counter = models.IntegerField()
-    total_negative_counter = models.IntegerField()
+    positive = models.IntegerField()
+    negative = models.IntegerField()

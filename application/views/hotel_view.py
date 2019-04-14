@@ -68,7 +68,8 @@ def map_comment(comment, hotel_id):
     comment_parts = comment['content'].split('.')
     comment_mappings = []
     for index, value in enumerate(comment_parts):
-        comment_mappings.append(model.use_neural_network(value))
+        if not value == '':
+            comment_mappings.append(model.use_neural_network(value))
     statisticsService.compute_stats(comment, comment_mappings, hotel_id)
 
 
