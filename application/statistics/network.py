@@ -14,8 +14,8 @@ class Mapped:
 class Model(object):
     POSITIVE = 'positive'
     NEGATIVE = 'negative'
-    path = './application/statistics/docs/'
-    categories = ['staff', 'location', 'cleanliness', 'food', 'facilities', 'total']
+    path = './preprocessed/' #'./application/statistics/docs/'
+    categories = ['staff', 'location', 'comfort', 'food', 'facilities', 'total']
 
     def __init__(self):
         tf.reset_default_graph()
@@ -32,7 +32,7 @@ class Model(object):
         self.y = tf.placeholder('float')
 
         self.hidden_1_layer = {'f_fum':self.n_nodes_hl1,
-                          'weight':tf.Variable(tf.random_normal([24, self.n_nodes_hl1])),
+                          'weight':tf.Variable(tf.random_normal([27, self.n_nodes_hl1])),
                           'bias':tf.Variable(tf.random_normal([self.n_nodes_hl1]))}
 
         self.hidden_2_layer = {'f_fum':self.n_nodes_hl2,
@@ -179,22 +179,22 @@ class Model(object):
                 print('Negative Location:',input_data)
                 return Mapped(self.categories[1], self.NEGATIVE)
             elif result[0] == 4:
-                print('Positive Parking:',input_data)
+                print('Positive comfort:',input_data)
                 return Mapped(self.categories[2], self.POSITIVE)
             elif result[0] == 5:
-                print('Negative Parking:',input_data)
+                print('Negative comfort:',input_data)
                 return Mapped(self.categories[2], self.NEGATIVE)
             elif result[0] == 6:
-                print('Positive pet friendly:',input_data)
+                print('Positive food:',input_data)
                 return Mapped(self.categories[3], self.POSITIVE)
             elif result[0] == 7:
-                print('Negative pet friendly:',input_data)
+                print('Negative food:',input_data)
                 return Mapped(self.categories[3], self.NEGATIVE)
             elif result[0] == 8:
-                print('Positive Restaurant:',input_data)
+                print('Positive facilities:',input_data)
                 return Mapped(self.categories[4], self.POSITIVE)
             elif result[0] == 9:
-                print('Negative Restaurant:',input_data)
+                print('Negative facilities:',input_data)
                 return Mapped(self.categories[5], self.NEGATIVE)
             elif result[0] == 10:
                 print('Positive total opinion:',input_data)
@@ -202,3 +202,8 @@ class Model(object):
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
                 return Mapped(self.categories[6], self.NEGATIVE)
+
+
+model = Model()
+model.train_neural_network()
+model.test_neural_network()

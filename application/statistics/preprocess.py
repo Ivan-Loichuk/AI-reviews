@@ -7,26 +7,10 @@ import pandas as pd
 
 lemmatizer = WordNetLemmatizer()
 
-'''
-Polarity:
-1 - Personal, P
-2 - Personal, N
-3 - Location, P
-4 - Location, N
-5 - Parking, P
-6 - Parking, N
-7 - Pet friendly, P
-8 - Pet friendly, N
-9 - Restaurant, P
-10 - Restaurant, N
-11 - Total opinion, P
-12 - Total opinion, N
-'''
-
 
 def init_process(fin, fout):
     outfile = open(fout, 'a')
-    with open(fin, buffering=200000, encoding='latin-1') as f:
+    with open(fin, buffering=200000, encoding='Windows-1252') as f:
         try:
             for line in f:
                 line = line.replace('"', '')
@@ -64,13 +48,13 @@ def init_process(fin, fout):
     outfile.close()
 
 
-init_process('training.1600000.processed.noemoticon.csv', 'train_set.csv')
-init_process('testdata.manual.2009.06.14.csv', 'test_set.csv')
+init_process('./training_data.csv', './preprocessed/train_set.csv')
+init_process('./test_data.csv', './preprocessed/test_set.csv')
 
 
 def create_lexicon(fin):
     lexicon = []
-    with open(fin, 'r', buffering=100000, encoding='latin-1') as f:
+    with open(fin, 'r', buffering=100000, encoding='Windows-1252') as f:
         try:
             counter = 1
             content = ''
@@ -87,18 +71,18 @@ def create_lexicon(fin):
         except Exception as e:
             print(str(e))
 
-    with open('lexicon.pickle', 'wb') as f:
+    with open('./preprocessed/lexicon.pickle', 'wb') as f:
         pickle.dump(lexicon, f)
 
 
-create_lexicon('train_set.csv')
+create_lexicon('./preprocessed/train_set.csv')
 
 
 def convert_to_vec(fin, fout, lexicon_pickle):
     with open(lexicon_pickle, 'rb') as f:
         lexicon = pickle.load(f)
     outfile = open(fout, 'a')
-    with open(fin, buffering=20000, encoding='latin-1') as f:
+    with open(fin, buffering=20000, encoding='Windows-1252') as f:
         counter = 0
         for line in f:
             counter += 1
@@ -122,17 +106,17 @@ def convert_to_vec(fin, fout, lexicon_pickle):
     # print(counter)
 
 
-convert_to_vec('test_set.csv', 'processed-test-set.csv', 'lexicon.pickle')
+convert_to_vec('./preprocessed/test_set.csv', './preprocessed/processed-test-set.csv', './preprocessed/lexicon.pickle')
 
 
 def shuffle_data(fin):
     df = pd.read_csv(fin, error_bad_lines=False)
     df = df.iloc[np.random.permutation(len(df))]
     # print(df.head())
-    df.to_csv('train_set_shuffled.csv', index=False)
+    df.to_csv('./preprocessed/train_set_shuffled.csv', index=False)
 
 
-shuffle_data('train_set.csv')
+shuffle_data('./preprocessed/train_set.csv')
 
 
 def create_test_data_pickle(fin):
@@ -155,4 +139,4 @@ def create_test_data_pickle(fin):
     labels = np.array(labels)
 
 
-create_test_data_pickle('processed-test-set.csv')
+create_test_data_pickle('./preprocessed/processed-test-set.csv')
