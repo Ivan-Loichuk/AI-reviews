@@ -14,7 +14,7 @@ class Mapped:
 class Model(object):
     POSITIVE = 'positive'
     NEGATIVE = 'negative'
-    path = './application/statistics/docs/'
+    path = './application/statistics/preprocessed/'
     categories = ['staff', 'location', 'comfort', 'food', 'facilities', 'total']
 
     def __init__(self):
@@ -151,7 +151,7 @@ class Model(object):
             lexicon = pickle.load(f)
 
         with tf.Session() as sess:
-            saver = tf.train.import_meta_graph(self.path + 'model.ckpt')
+            saver = tf.train.import_meta_graph(self.path + 'model.ckpt.meta')
             saver.restore(sess, tf.train.latest_checkpoint(self.path))
 
             current_words = word_tokenize(input_data.lower())

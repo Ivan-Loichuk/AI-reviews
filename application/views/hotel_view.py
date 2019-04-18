@@ -84,7 +84,7 @@ def add_hotel_type(request):
         return JsonResponse(type_serializer.data, status=201)
     return JsonResponse(type_serializer.errors, status=400)
 
-
+# TODO: return mapping of comment to the FE side
 def get_comments(request, hotel_id):
     comments = Comment.objects.filter(hotel=hotel_id).values()
     for index, val in enumerate(comments):
