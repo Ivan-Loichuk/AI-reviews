@@ -13,13 +13,16 @@ export class ReviewsAllComponent implements OnInit {
 
   comments: Array<Comment>;
   hotel: Hotel;
-  stats;
+  statistic = {};
+  commentMappings = []
 
   constructor(private storage: Storage, private http: HttpClient, private activRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.comments = this.storage.get('comments');
     this.hotel = this.storage.get('hotel');
+    this.commentMappings = this.storage.get('mappings');
+
     if (!this.comments && !this.hotel) {
       this.activRoute.params.subscribe((params: Params) => {
         this.getHotel(params['id']);
@@ -29,6 +32,22 @@ export class ReviewsAllComponent implements OnInit {
 
   getHotel(id) {
     this.http.get<Hotel>('api/hotel/' + id).subscribe(data => this.hotel = data);
-    this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => this.comments = data);
+    this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => {
+      this.comments = data;
+      this.http.get<any>('api/hotel/' + id + '/comment-mappings').subscribe(data => {
+        this.commentMappings = data;
+        this.comments.forEach(comment => this.mapComment(comment));
+      });
+    });
+  }
+
+  mapComment(comment) {
+    comment['mappings'] = [];
+    for (let i = 0; i < this.commentMappings.length; i++) {
+      let commentMapping = this.commentMappings[i];
+      if (commentMapping.comment_id === comment.id) {
+        comment['mappings'].push(commentMapping);
+      }
+    }
   }
 }

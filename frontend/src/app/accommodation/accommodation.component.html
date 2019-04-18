@@ -44,13 +44,6 @@
           {{ hotel.street }}<br /> 
         </div>
       </div>
-      <!-- <div class="card rating-block">
-          <div class="card-block">
-              <b>Rating:  </b>
-              <span>9.8 / 10</span>
-              <app-rating-stars></app-rating-stars>
-          </div>
-      </div> -->
       <button type="button" class="btn btn-primary add-review" data-toggle="modal" data-target="#add-review-form">Add a review</button>
       <app-modal-add-review></app-modal-add-review>
     </div>
@@ -62,10 +55,10 @@
     </div>
   </div>
 
-  <div class="row rating-summary-block">
+  <div *ngIf="statistic" class="row rating-summary-block">
       <div class="col-lg-9 col-xs-12">
           <h2 class="header"><strong>Rating summary</strong></h2>
-          <app-rating-summary *ngIf="comments" [guestReviews]="comments.length"></app-rating-summary>
+          <app-rating-summary [statistic]="statistic" *ngIf="comments" [guestReviews]="comments.length"></app-rating-summary>
       </div>
   </div>
   <div class="row reviews-block">
@@ -73,6 +66,6 @@
           <h2 class="header"><strong>Reviews</strong></h2> 
           <a (click)="allReviews()"><span>See all guest reviews</span></a>
         </div>
-        <app-accommodation-reviews *ngIf="comments" [comments]="comments.length > 4? comments.slice(0, 4) : comments"></app-accommodation-reviews>  
+        <app-accommodation-reviews *ngIf="comments && commentMappings" [comments]="comments.length > 4? comments.slice(0, 4) : comments"></app-accommodation-reviews>  
   </div>
 </div>
