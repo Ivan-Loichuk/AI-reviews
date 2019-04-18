@@ -15,7 +15,8 @@ class StatisticsService:
             comment_mapping = {
                 'comment': comment['comment'],
                 'type': value.comment_type,
-                'category': value.category
+                'category': value.category,
+                'hotel': hotel_id
             }
             comment_mapping_serializer = CommentMappingSerializer(data=comment_mapping)
             if comment_mapping_serializer.is_valid():

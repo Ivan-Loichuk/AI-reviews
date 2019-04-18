@@ -14,7 +14,7 @@ class Mapped:
 class Model(object):
     POSITIVE = 'positive'
     NEGATIVE = 'negative'
-    path = './preprocessed/' #'./application/statistics/docs/'
+    path = './application/statistics/docs/'
     categories = ['staff', 'location', 'comfort', 'food', 'facilities', 'total']
 
     def __init__(self):
@@ -26,7 +26,7 @@ class Model(object):
         self.n_classes = 12
 
         self.batch_size = 32
-        self.hm_epochs = 10
+        self.hm_epochs = 20
 
         self.x = tf.placeholder('float')
         self.y = tf.placeholder('float')
@@ -195,15 +195,10 @@ class Model(object):
                 return Mapped(self.categories[4], self.POSITIVE)
             elif result[0] == 9:
                 print('Negative facilities:',input_data)
-                return Mapped(self.categories[5], self.NEGATIVE)
+                return Mapped(self.categories[4], self.NEGATIVE)
             elif result[0] == 10:
                 print('Positive total opinion:',input_data)
-                return Mapped(self.categories[6], self.POSITIVE)
+                return Mapped(self.categories[5], self.POSITIVE)
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
-                return Mapped(self.categories[6], self.NEGATIVE)
-
-
-model = Model()
-model.train_neural_network()
-model.test_neural_network()
+                return Mapped(self.categories[5], self.NEGATIVE)
