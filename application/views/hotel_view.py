@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -12,6 +14,7 @@ from application.statistics.network import Model
 from application.statistics.statistics_service import StatisticsService
 
 statisticsService = StatisticsService()
+pattern = re.compile('[!.?]')
 
 
 @login_required
@@ -65,7 +68,7 @@ def add_comment(request):
 
 def map_comment(comment, hotel_id):
     model = Model()
-    comment_parts = comment['content'].split('.')
+    comment_parts = pattern.split(comment['content'])
     comment_mappings = []
     for index, value in enumerate(comment_parts):
         if not value == '':
