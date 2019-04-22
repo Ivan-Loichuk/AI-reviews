@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ReviewsComponent implements OnInit {
   @Input()
   comments: Array<Comment>;
+  @Input()
+  mappings: Array<any>;
 
   constructor() { }
 

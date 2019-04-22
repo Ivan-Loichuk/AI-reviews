@@ -43,6 +43,7 @@
               <div class="card">
                 <div class="card-header">
                   <strong>{{ comment.sender }}</strong> <span class="text-muted">commented 5 days ago</span>
+                  <span *ngFor="let mapping of comment['mappings']" [ngStyle]="{'background': mapping.type === 'positive' ? 'green' : 'red'}"> {{ mapping.category }}</span>
                 </div>
                 <div class="card-body">
                   {{ comment.content }}

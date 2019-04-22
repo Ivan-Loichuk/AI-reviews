@@ -13,7 +13,7 @@
                 <div class="guide__user-comment__meta">
                   <span title="Elizabeth B">
                     <a href="/hc/en-us/profiles/361115929888-Elizabeth-B">
-                      {{ comments.sender }}
+                      {{ comment.sender }}
                     </a>
                   </span>
                   <ul class="meta-group">
@@ -21,7 +21,7 @@
                   </ul>
                 </div>
                 <div class="rating-stars">
-                    <app-rating-stars></app-rating-stars>
+                    <span *ngFor="let mapping of comment['mappings']" [ngStyle]="{'background': mapping.type === 'positive' ? 'green' : 'red'}"> {{ mapping.category }}</span>
                 </div>
               </header>
               <section class="comment-body">

@@ -12,6 +12,8 @@ import { Storage } from '../shared/storage';
 export class AccommodationComponent implements OnInit {
   hotel: Hotel;
   comments: Array<Comment>;
+  statistic;
+  commentMappings;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private storage: Storage) { }
 
@@ -30,10 +32,30 @@ export class AccommodationComponent implements OnInit {
     this.http.get<Array<Comment>>('api/hotel/' + id + '/comments').subscribe(data => {
       this.comments = data;
       this.storage.put('comments', this.comments);
+      this.http.get<any>('api/hotel/' + id + '/comment-mappings').subscribe(data => {
+        this.commentMappings = data;
+        this.comments.forEach(comment => this.mapComment(comment));
+        this.storage.put('mappings', this.commentMappings);
+      });
+    });
+
+    this.http.get<any>('api/hotel/' + id + '/statistic').subscribe(data => {
+      this.statistic = data;
+      this.storage.put('statistic', this.statistic);
     });
   }
 
   allReviews() {
     this.router.navigate(['/reviews/' + this.hotel.id]);
+  }
+
+  mapComment(comment) {
+    comment['mappings'] = [];
+    for (let i = 0; i < this.commentMappings.length; i++) {
+      let commentMapping = this.commentMappings[i];
+      if (commentMapping.comment_id === comment.id) {
+        comment['mappings'].push(commentMapping);
+      }
+    }
   }
 }

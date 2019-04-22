@@ -13,5 +13,7 @@ urlpatterns = [
     path('api/type', hotel_view.add_hotel_type, name='add_hotel_type'),
     path('api/hotel/comment', hotel_view.add_comment, name='add_comment'),
     path('api/hotels/search', hotel_view.search_hotels, name='search_hotels'),
-    path('api/hotel/<int:hotel_id>/comments', hotel_view.get_comments, name='get_Comments')
+    path('api/hotel/<int:hotel_id>/comments', hotel_view.get_comments, name='get_Comments'),
+    path('api/hotel/<int:hotel_id>/statistic', hotel_view.get_statistic, name='hotel_statistic'),
+    path('api/hotel/<int:hotel_id>/comment-mappings', hotel_view.get_comment_mappings, name='comment_mappings')
 ]

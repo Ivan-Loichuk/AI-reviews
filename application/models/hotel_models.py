@@ -16,7 +16,6 @@ class Hotel(models.Model):
     email = models.CharField(max_length=256)
     hotel_type = models.ForeignKey(HotelType, on_delete=models.CASCADE)
     description = models.CharField(max_length=1024)
-    stat_summary = models.IntegerField()
 
 
 class Comment(models.Model):
@@ -27,7 +26,7 @@ class Comment(models.Model):
 
 
 class CommentMapping(models.Model):
-    id = models.AutoField(primary_key=True)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     category = models.CharField(max_length=256)
     type = models.CharField(max_length=256)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)

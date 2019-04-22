@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -6,12 +8,13 @@ from rest_framework.parsers import JSONParser
 
 from application.models.comment_serializer import CommentSerializer
 from application.models.hotel_serializer import HotelSerializer
-from application.models.hotel_models import Hotel, Comment, HotelType
+from application.models.hotel_models import Hotel, Comment, HotelType, HotelStatistic, CommentMapping
 from application.models.type_serializer import TypeSerializer
 from application.statistics.network import Model
 from application.statistics.statistics_service import StatisticsService
 
 statisticsService = StatisticsService()
+pattern = re.compile('[!.?]')
 
 
 @login_required
@@ -65,7 +68,7 @@ def add_comment(request):
 
 def map_comment(comment, hotel_id):
     model = Model()
-    comment_parts = comment['content'].split('.')
+    comment_parts = pattern.split(comment['content'])
     comment_mappings = []
     for index, value in enumerate(comment_parts):
         if not value == '':
@@ -89,3 +92,12 @@ def get_comments(request, hotel_id):
         comments[index]['sender'] = user['username']
     return JsonResponse(list(comments), content_type="application/json", safe=False)
 
+
+def get_comment_mappings(request, hotel_id):
+    comment_mappings = CommentMapping.objects.filter(hotel=hotel_id).values()
+    return JsonResponse(list(comment_mappings), content_type="application/json", safe=False)
+
+
+def get_statistic(request, hotel_id):
+    statistic = HotelStatistic.objects.filter(hotel=hotel_id).values()
+    return JsonResponse(list(statistic), content_type="application/json", safe=False)
