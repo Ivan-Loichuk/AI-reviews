@@ -14,7 +14,7 @@ class Mapped:
 class Model(object):
     POSITIVE = 'positive'
     NEGATIVE = 'negative'
-    path = './application/statistics/preprocessed/'
+    path = './preprocessed/'#'./application/statistics/preprocessed/'
     categories = ['staff', 'location', 'comfort', 'food', 'facilities', 'total']
 
     def __init__(self):
@@ -164,7 +164,8 @@ class Model(object):
 
             features = np.array(list(features))
             result = (sess.run(tf.argmax(prediction.eval(session=sess, feed_dict={self.x: [features]}), 1)))
-
+            # prediction.eval() will have an output layer with neurons for each class
+            # tf.argmax simply picks neuron with maximum value which indicates the most suitable class
             if result[0] == 0:
                 print('Positive personal:',input_data)
                 return Mapped(self.categories[0], self.POSITIVE)
@@ -201,3 +202,7 @@ class Model(object):
             elif result[0] == 11:
                 print('Negative total opinion:',input_data)
                 return Mapped(self.categories[5], self.NEGATIVE)
+
+
+model = Model()
+model.use_neural_network('Great hotel. Very bad location.')
