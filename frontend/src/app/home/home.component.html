@@ -57,7 +57,7 @@
 <div class="container hotel-cards">
     <div class="card-deck">
         <div class="card" *ngFor="let hotel of hotels">
-          <img class="card-img-top hover" src="https://loremflickr.com/345/200/house,hotel,room,interior?random={{hotel.id}}" alt="Card image cap" (click)="checkHotel(hotel.id)"> 
+          <img class="card-img-top hover" src="https://loremflickr.com/345/200/house,hotel,room,interior?random={{hotel.id}}" alt="Card image cap" (click)="checkHotel(hotel.id)">
           <div class="card-body">
             <h5 class="card-title hover" (click)="checkHotel(hotel.id)">{{ hotel.name }}</h5>
             <p class="card-text">{{ hotel.description | slice:0:100 }}...</p>

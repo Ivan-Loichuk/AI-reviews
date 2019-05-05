@@ -20,12 +20,18 @@
                       <li class="meta-data">2 months ago</li>
                   </ul>
                 </div>
-                <div class="rating-stars">
-                    <app-rating-stars></app-rating-stars>
-                </div>
+                <div class="f-labels">
+                  <span
+                    *ngFor="let mapping of comment['mappings']"
+                    [ngClass]="mapping.type === 'positive' ? 'badge badge-success' : 'badge badge-danger'"
+                    class="badge badge-success">
+                    {{ mapping.category }}
+                   <!-- <span class="remove-f">x</span> -->
+                  </span>
+               </div>
               </header>
               <section class="comment-body">
-                <p>{{ comment.content | slice:0:200 }}</p>
+                <p>{{ comment.content }}</p>
               </section>
             </div>
           </li>

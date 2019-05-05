@@ -11,34 +11,22 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   hotels: Array<Hotel> = [];
-  filters: Object = {};
 
-  constructor(private http: HttpClient, private router: Router) {
-    // jak dodasz limit do sql wyszukiwania to zamienić Zakopane na "" i dodać this.filters['limit'] = 3
-    this.filters['city'] = "Zakopane";
-    this.filters['types'] = [];
-
-    this.searchHotel(this.filters);
-   }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.getHotels();
   }
 
   getHotels() {
     //this.http.get<Array<Hotel>>('api/all').subscribe(data => this.hotels = data);
   }
 
-  search(city, page=1) {
+  search(city) {
     if (city === '') {
-      this.router.navigate(['search/all/1']);
+      this.router.navigate(['search/all']);
     } else
-      this.router.navigate(['search/' + city + '/' + page]);
+      this.router.navigate(['search/' + city]);
   }
-
-   searchHotel(filters) {
-     this.http.post<Array<Hotel>>('api/hotels/search', filters).subscribe(data => this.hotels = data);
-   }
    checkHotel(id) {
     this.router.navigate(['accommodation/' + id])
   }

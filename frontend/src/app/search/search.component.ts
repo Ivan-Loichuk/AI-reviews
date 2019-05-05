@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
       if (params['city'] === 'all') {
         this.searchHotel({city: '', types: []})
         this.search_words = 'All';
-      } else{
+      } else {
         this.searchHotel({city: params['city'], types: []});
         this.search_words = params['city'];
       }

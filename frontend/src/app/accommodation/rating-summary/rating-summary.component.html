@@ -1,4 +1,7 @@
-<div class="row accommodation-ratings">
+<div *ngIf="!statistic || statistic.length === 0" class="row accommodation-ratings">
+    No one has posted any review so far.
+</div>
+<div *ngIf="statistic && statistic.length > 0" class="row accommodation-ratings">
     <div class="col-md-7 col-sm-8">
         <div class="well hotel-ratings-details">
             <div class="row">
@@ -6,7 +9,7 @@
                     <!-- green -->
                     <div class="clearfix rating-circle">
                         <div class="c100 p50 big green">
-                            <span>50%</span>
+                            <span>{{ total }}%</span>
                             <div class="slice">
                                 <div class="bar"></div>
                                 <div class="fill"></div>
@@ -15,8 +18,8 @@
                     </div>
                      <!-- /green -->
                     <div class="hotel-rating-box-tool">
-                        <strong>Excellent</strong><br>(<span itemprop="reviewCount">32</span> guest reviews )
-                       <div class="rating-speakabout" rel="tooltip_top" data-original-title="100% gości poleciłoby ten obiekt znajomym">
+                        <strong>{{ totalText }}</strong><br>(<span itemprop="reviewCount">{{ guestReviews }}</span> guest reviews )
+                       <div class="rating-speakabout" rel="tooltip_top" title="{{ total }}% gości poleciłoby ten obiekt znajomym">
                         <span class="glyphicon glyphicon-speakabout font-16"></span>
                     </div>
                     <div class="rating-quality-icons">
@@ -27,7 +30,19 @@
                 </div>
                 <div class="col-xs-6 col-xs-push-6 hotel-ratings-details-list">
                     <ul class="rating-list list-unstyled">
-                        <li>Personel:
+                        <li *ngFor="let stat of statistic">
+                            {{ stat.category }}:
+                            <div class="clearfix small-circle">
+                                <div class="c100 p50 small green">
+                                    <span> {{ stat['percentage'] }}%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- <li>Staff:
                             <div class="clearfix small-circle">
                                 <div class="c100 p50 small green">
                                     <span>80</span>
@@ -49,7 +64,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li>Parking:
+                        <li>Comfort:
                             <div class="clearfix small-circle">
                                 <div class="c100 p50 small green">
                                     <span>90</span>
@@ -60,7 +75,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li>Pet friendly:
+                        <li>Food&Drink:
                             <div class="clearfix small-circle">
                                 <div class="c100 p50 small green">
                                     <span>50</span>
@@ -71,7 +86,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li>Restaurant:
+                        <li>Facilities:
                             <div class="clearfix small-circle">
                                 <div class="c100 p50 small green">
                                     <span>50</span>
@@ -81,7 +96,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

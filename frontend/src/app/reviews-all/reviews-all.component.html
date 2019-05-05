@@ -12,7 +12,8 @@
               <app-rating-stars></app-rating-stars>
             </div>
         </div>
-        <div class="card rating-block">
+        <!-- <div class="card rating-block">
+>>>>>>> statistics-AI
             <div class="card-block">
                 <b>Rating:  </b>
                 <span>9.8 / 10</span>
@@ -20,51 +21,14 @@
                 <br>
                 <a href="#" class="btn btn-primary add-review-btn" data-toggle="modal" data-target="#add-review-form">Add review</a>
                 <app-modal-add-review></app-modal-add-review>
-            </div>
-        </div>
-        <div class="card rating-block">
-          <div class="card-block">
-            <h3 class="header">Filter results:</h3>
-            <form action="">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                <label class="form-check-label" for="defaultCheck3">
-                  Personal
-                </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                  Clean & Comfortable
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                <label class="form-check-label" for="defaultCheck2">
-                  Food & Drinks
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                <label class="form-check-label" for="defaultCheck4">
-                  Location
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                <label class="form-check-label" for="defaultCheck5">
-                  Staff
-                </label>
-              </div>
-            </form>
-          </div>
-      </div>
+        </div> -->
     </div>
     <div class="col-md-9">
         <div class="row">
             <div class="col-sm-12">
               <div class="pagination-block">
-                  <app-pagination [count_results]="25" [active_page]="1" [hotel]="hotel"></app-pagination>
+                  <app-pagination></app-pagination>
               </div>
               <h3>User Comments</h3>
             </div><!-- /col-sm-12 -->
@@ -81,12 +45,13 @@
                 <div class="card-header">
                   <strong>{{ comment.sender }}</strong> <span class="text-muted">commented 5 days ago</span>
                   <div class="f-labels">
-                     <span class="badge badge-success">Personal <span class="remove-f">x</span></span>
-                     <span class="badge badge-success">Clean & Comfortable <span class="remove-f">x</span></span>
-                     <span class="badge badge-success">Food & Drinks <span class="remove-f">x</span></span>
-                     <span class="badge badge-danger">Location <span class="remove-f">x</span></span>
-                     <span class="badge badge-danger">Staff <span class="remove-f">x</span></span>
-                     <span class="badge badge-success">Total opinion <span class="remove-f">x</span></span>
+                     <span
+                       *ngFor="let mapping of comment['mappings']"
+                       [ngClass]="mapping.type === 'positive' ? 'badge badge-success' : 'badge badge-danger'"
+                       class="badge badge-success">
+                       {{ mapping.category }}
+                      <!-- <span class="remove-f">x</span> -->
+                     </span>
                   </div>
                 </div>
                 <div class="card-body">
